@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Ambta\DoctrineEncryptBundle\AmbtaDoctrineEncryptBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new Avanzu\AdminThemeBundle\AvanzuAdminThemeBundle(),
 
             new WebBundle\WebBundle(),
             new AdminBundle\AdminBundle(),

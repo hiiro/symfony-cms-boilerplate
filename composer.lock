@@ -4,8 +4,48 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "1be0cce4db8adfbfddd133554cfcd5bb",
+    "content-hash": "f540814ae2eea1802d60b312c21b427a",
     "packages": [
+        {
+            "name": "almasaeed2010/adminlte",
+            "version": "v2.3.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/almasaeed2010/AdminLTE.git",
+                "reference": "2be703222af2edcb87e562d3da2299e4352bff8a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/almasaeed2010/AdminLTE/zipball/2be703222af2edcb87e562d3da2299e4352bff8a",
+                "reference": "2be703222af2edcb87e562d3da2299e4352bff8a",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Abdullah Almsaeed",
+                    "email": "abdullah@almsaeedstudio.com"
+                }
+            ],
+            "description": "AdminLTE - admin control panel and dashboard that's based on Bootstrap 3",
+            "homepage": "http://almsaeedstudio.com/",
+            "keywords": [
+                "JS",
+                "admin",
+                "back-end",
+                "css",
+                "less",
+                "responsive",
+                "template",
+                "theme",
+                "web"
+            ],
+            "time": "2017-01-08T21:03:57+00:00"
+        },
         {
             "name": "ambta/doctrine-encrypt-bundle",
             "version": "2.5.4",
@@ -53,6 +93,63 @@
                 "symfony"
             ],
             "time": "2016-09-30T08:17:40+00:00"
+        },
+        {
+            "name": "avanzu/admin-theme-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/avanzu/AdminThemeBundle.git",
+                "reference": "670c3da155987d4eb76ae4ce653a7945e95f4b96"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/avanzu/AdminThemeBundle/zipball/670c3da155987d4eb76ae4ce653a7945e95f4b96",
+                "reference": "670c3da155987d4eb76ae4ce653a7945e95f4b96",
+                "shasum": ""
+            },
+            "require": {
+                "almasaeed2010/adminlte": "~2.3.0",
+                "php": ">=5.5.9",
+                "symfony/console": ">=2.3",
+                "symfony/event-dispatcher": ">=2.3",
+                "symfony/http-foundation": ">=2.3",
+                "symfony/http-kernel": ">=2.3",
+                "symfony/options-resolver": ">=2.3",
+                "symfony/process": ">=2.3"
+            },
+            "require-dev": {
+                "phpspec/prophecy": "^1.6"
+            },
+            "suggest": {
+                "knplabs/knp-menu-bundle": "Allows easy menu integration."
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Avanzu\\AdminThemeBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marc Bach",
+                    "email": "mail@avanzu.de",
+                    "homepage": "http://www.avanzu.de",
+                    "role": "Original Author"
+                },
+                {
+                    "name": "Ángel Guzmán Maeso",
+                    "email": "shakaran@gmail.com",
+                    "homepage": "https://shakaran.net/blog",
+                    "role": "Developer Collaborator"
+                }
+            ],
+            "description": "Admin Theme based on the AdminLTE Template for easy integration into symfony",
+            "time": "2018-02-03T10:01:04+00:00"
         },
         {
             "name": "behat/transliterator",
@@ -3400,7 +3497,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "avanzu/admin-theme-bundle": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

@@ -40,6 +40,8 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    globals:
+        admin_skin: "%admin_skin%"
 
 # Doctrine Configuration
 doctrine:
@@ -126,3 +128,7 @@ stof_doctrine_extensions:
             softdeleteable: true
             sortable:       true
             tree:           true
+
+# AvanzuAdminThemeBundle Configuration
+avanzu_admin_theme:
+    bower_bin: %bower_bin% # that's the default value

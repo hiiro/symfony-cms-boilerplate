@@ -19,3 +19,7 @@ parameters:
     secret: ThisTokenIsNotSoSecretChangeIt
 
     channel: http
+
+    # AvanzuAdminThemeBundle
+    bower_bin: /bin/bower
+    admin_skin: skin-blue
