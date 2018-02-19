@@ -1,11 +1,16 @@
 # To get started with security, check out the documentation:
 # https://symfony.com/doc/current/security.html
 security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+        CoreBundle\Entity\Administrator: sha512
 
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
         in_memory:
             memory: ~
+        fos_userbundle:
+            id: fos_user.user_provider.username_email
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -14,7 +19,15 @@ security:
             security: false
 
         main:
-            anonymous: ~
+            pattern: ^/
+            form_login:
+                default_target_path: /admin/
+                provider: fos_userbundle
+                csrf_token_generator: security.csrf.token_manager # Use form.csrf_provider instead for Symfony <2.4
+            logout:
+              path: /logout
+              target: /login
+            anonymous:    true
             # activate different ways to authenticate
 
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
@@ -22,3 +35,7 @@ security:
 
             # https://symfony.com/doc/current/security/form_login_setup.html
             #form_login: ~
+    access_control:
+        - { path: ^/admin, role: ROLE_USER, requires_channel: "%channel%" }
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: "%channel%" }
+        - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: "%channel%" }

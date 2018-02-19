@@ -21,8 +21,11 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Ambta\DoctrineEncryptBundle\AmbtaDoctrineEncryptBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
 
-            new AppBundle\AppBundle(),
+            new WebBundle\WebBundle(),
+            new AdminBundle\AdminBundle(),
+            new CoreBundle\CoreBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
