@@ -1,9 +1,52 @@
 {% extends 'AvanzuAdminThemeBundle:layout:default-layout.html.twig' %}
 {% block avanzu_logo_path %}#{% endblock %}
 
+{% block avanzu_head %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/js/plugins/toastr/build/toastr.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/common.css') }}" />
+{% endblock %}
+
 {% block avanzu_page_title %}コントロールパネル{% endblock %}
 {% block avanzu_page_subtitle %}Control Panel{% endblock %}
 
-{% block avanzu_page_content %}
-    index
+{% block avanzu_page_content %}{% endblock %}
+
+{% block avanzu_sidebar_nav %}
+    <ul class="sidebar-menu tree" data-widget="tree">
+        <li class="header">MAIN NAVIGATION</li>
+        <li class="treeview">
+            <a href="#">
+                <i class="fa fa-users"></i> <span>管理ユーザー管理</span>
+                <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="{{ path('admin_administrator_index') }}"><i class="fa fa-circle-o"></i> 管理ユーザー一覧</a></li>
+                <li><a href="{{ path('admin_administrator_new') }}"><i class="fa fa-circle-o"></i> 管理ユーザー追加</a></li>
+            </ul>
+        </li>
+    </ul>
+{% endblock %}
+
+{% block avanzu_javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/admin/js/plugins/toastr/build/toastr.min.js') }}"></script>
+    <script src="{{ asset('bundles/admin/js/common.js') }}"></script>
+
+{% endblock %}
+
+{% block avanzu_javascripts_inline %}
+    {{ parent() }}
+    <script>
+        $(function() {
+            {% for level in ['danger', 'warning', 'success', 'info'] %}
+            {% for flashMessage in app.flashes(level) %}
+            toastr["{{ level }}"]("{{ flashMessage }}");
+            {% endfor %}
+            {% endfor %}
+        });
+    </script>
+
 {% endblock %}

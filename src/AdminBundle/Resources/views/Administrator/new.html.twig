@@ -1,0 +1,35 @@
+{% extends '@Admin/layout.html.twig' %}
+
+{% block avanzu_page_title %}管理ユーザー追加{% endblock %}
+{% block avanzu_page_subtitle %}Add Administrator User{% endblock %}
+
+{% block avanzu_page_content %}
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col-lg-12">
+            {{ form_row(form.name) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            {{ form_row(form.username) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            {{ form_row(form.plainPassword) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            {{ form_row(form.email) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            {{ form_row(form.enabled) }}
+        </div>
+    </div>
+    <button class="btn btn-primary">送信</button>
+    {{ form_end(form) }}
+{% endblock %}

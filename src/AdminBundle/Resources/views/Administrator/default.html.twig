@@ -1,0 +1,58 @@
+{% extends '@Admin/layout.html.twig' %}
+
+
+{% block avanzu_page_title %}コントロールパネル{% endblock %}
+{% block avanzu_page_subtitle %}Control Panel{% endblock %}
+
+{% block avanzu_page_content %}
+    <div class="box">
+        <div class="box-body">
+            <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                <div class="row">
+                    <div class="col-sm-6"></div>
+                    <div class="col-sm-6"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        {% if pagination | length %}
+                        <table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+                            <thead>
+                                <tr role="row">
+                                    <th style="">名前</th>
+                                    <th style="width: 20%;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for entry in pagination %}
+                            <tr role="row" class="{% if loop.index % 2 %}odd{% else %}even{% endif %}">
+                                <td><a href="{{ path('admin_administrator_edit', {id:entry.id}) }}">{{ entry.name }}</a></td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <a href="{{ path('admin_administrator_edit', {id:entry.id}) }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i> 編集</a>
+                                        <a href="{{ path('admin_administrator_remove', {id:entry.id}) }}" class="btn btn-danger btn-sm js-trigger-confirm" data-message="削除してもよろしいですか？"><i class="fa fa-trash"></i> 削除</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        {% else %}
+                            データが登録されていません
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5">
+                        {#<div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>#}
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+                            {{ knp_pagination_render(pagination) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.box-body -->
+    </div>
+{% endblock %}

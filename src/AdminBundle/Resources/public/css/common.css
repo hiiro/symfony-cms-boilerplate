@@ -1,0 +1,21 @@
+.toast-top-right {
+    top: 55px;
+    right: 12px;
+}
+
+.url {
+    font-size: 1.75rem;
+}
+
+.dl-horizontal {
+    margin-bottom: 5px;
+}
+.dl-horizontal dt {
+    clear: left;
+    float: left;
+    width: 10%;
+    text-align: left;
+}
+.dl-horizontal dd {
+    margin: 0 0 0 10%;
+}
