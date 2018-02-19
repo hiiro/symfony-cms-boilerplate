@@ -6,11 +6,11 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: ja
 
 framework:
     #esi: ~
-    #translator: { fallbacks: ['%locale%'] }
+    translator: { fallbacks: ['%locale%'] }
     secret: '%secret%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
@@ -30,6 +30,8 @@ framework:
     assets: ~
     php_errors:
         log: true
+    templating:
+        engines: ['twig']
 
 # Twig Configuration
 twig:
@@ -55,8 +57,22 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
-        naming_strategy: doctrine.orm.naming_strategy.underscore
-        auto_mapping: true
+        entity_managers:
+            default:
+                naming_strategy: doctrine.orm.naming_strategy.underscore
+                auto_mapping: true
+                filters:
+                    softdeleteable:
+                        class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
+                        enabled: true
+                dql:
+                    datetime_functions:
+                        date: DoctrineExtensions\Query\Mysql\Date
+                        date_format: DoctrineExtensions\Query\Mysql\DateFormat
+                    string_functions:
+                        ifnull: DoctrineExtensions\Query\Mysql\IfNull
+                    numeric_functions:
+                        rand: DoctrineExtensions\Query\Mysql\Rand
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -65,3 +81,36 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+# ambta/DoctrineEncryptBundle Configuration
+ambta_doctrine_encrypt:
+    secret_key:           XG4BKLSK39IQV9FZSEFJ8GJXKRE2SKX3 # Your own random 256 bit key (32 characters)
+    encryptor:            rijndael256 # rijndael256 or rijndael128
+    encryptor_class:      \Ambta\DoctrineEncryptBundle\Encryptors\Rijndael256Encryptor # your own encryption class
+
+# NelmioSecurityBundle Configuration
+nelmio_security:
+    external_redirects:
+        abort: true
+        log: true
+    xss_protection:
+        enabled: true
+        mode_block: true
+    encrypted_cookie:
+        names: ['*']
+
+# KnpPaginatorBundle Configuration
+knp_paginator:
+    page_range: 4
+    template:
+        pagination: ::pagination.html.twig
+
+# StofDoctrineExtensionsBundle Configuration
+stof_doctrine_extensions:
+    default_locale: %locale%
+    orm:
+        default:
+            timestampable:  true
+            softdeleteable: true
+            sortable:       true
+            tree:           true
