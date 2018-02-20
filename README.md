@@ -19,7 +19,7 @@ $ bin/console d:f:l
 
 ## Licence
 
-[MIT](https://github.com/tcnksm/tool/blob/master/LICENCE)
+[MIT](http://opensource.org/licenses/MIT)
 
 ## Author
 
