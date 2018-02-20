@@ -19,3 +19,16 @@
 .dl-horizontal dd {
     margin: 0 0 0 10%;
 }
+
+.no-data-message {
+    font-size: 2rem;
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+    text-align: center;
+}
+.no-data-message .message-container {
+}
+.no-data-message i {
+    font-size: 10rem;
+    margin-bottom: 5rem;
+}

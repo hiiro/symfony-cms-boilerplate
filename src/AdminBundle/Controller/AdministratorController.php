@@ -8,6 +8,7 @@ use CoreBundle\Traits\Paginator\PaginatorTrait;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AdministratorController extends Controller
@@ -21,8 +22,28 @@ class AdministratorController extends Controller
     {
         $page = $request->get('page', 1);
 
+        $resolver = new OptionsResolver();
+        $resolver->setDefaults(array(
+            'page'     => 1,
+            'limit'     => 50,
+            'q' => null,
+            'enabled' => '',
+        ));
+        $context = $resolver->resolve($request->query->all());
+
         $builder = $this->getDoctrine()->getRepository('CoreBundle:Administrator')
             ->createQueryBuilder('e');
+
+        if ($context['q']) {
+            $builder->andWhere('e.searchIndex like :q')
+                ->setParameter('q', '%'. $context['q']. '%')
+            ;
+        }
+        if ($context['enabled'] !== '') {
+            $builder->andWhere('e.enabled = :enabled')
+                ->setParameter('enabled', $context['enabled'])
+            ;
+        }
 
         $pagination = $this->paginate($builder, $page, 50, [
             'defaultSortFieldName' => ['e.createdAt', 'e.id'],
@@ -31,7 +52,8 @@ class AdministratorController extends Controller
         $pagination->setTemplate('@Admin/pagination.html.twig');
 
         return $this->render('@Admin/Administrator/default.html.twig', [
-            'pagination' => $pagination
+            'pagination' => $pagination,
+            'context' => $context,
         ]);
     }
 

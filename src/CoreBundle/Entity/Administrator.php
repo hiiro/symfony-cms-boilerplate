@@ -13,6 +13,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @ORM\Entity(repositoryClass="CoreBundle\Repository\AdministratorRepository")
  * @ORM\Table(name="Administrator")
+ * @ORM\HasLifecycleCallbacks()
  * @UniqueEntity("username")
  */
 class Administrator  extends BaseUser implements AdvancedUserInterface
@@ -33,6 +34,12 @@ class Administrator  extends BaseUser implements AdvancedUserInterface
      * @ORM\Column(name="name", type="string", length=128)
      */
     protected $name;
+
+    /**
+     * @var string
+     * @ORM\Column(name="search_index", type="text", nullable=true)
+     */
+    private $searchIndex = null;
 
 
     /**
@@ -57,5 +64,19 @@ class Administrator  extends BaseUser implements AdvancedUserInterface
     public function getName()
     {
         return $this->name;
+    }
+
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function onUpdate()
+    {
+        $this->searchIndex = (string)
+            $this->getName() . ' ' .
+            $this->getUsernameCanonical() . ' ' .
+            $this->getEmailCanonical() . ' '
+        ;
     }
 }

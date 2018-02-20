@@ -1,16 +1,48 @@
 {% extends '@Admin/layout.html.twig' %}
 
 
-{% block avanzu_page_title %}コントロールパネル{% endblock %}
-{% block avanzu_page_subtitle %}Control Panel{% endblock %}
+{% block avanzu_page_title %}管理ユーザー一覧{% endblock %}
+{% block avanzu_page_subtitle %}Administrator users{% endblock %}
 
 {% block avanzu_page_content %}
     <div class="box">
         <div class="box-body">
-            <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+            <div id="" class="dataTables_wrapper dt-bootstrap">
                 <div class="row">
-                    <div class="col-sm-6"></div>
-                    <div class="col-sm-6"></div>
+                    <div class="col-sm-12 ">
+                        <div class="pull-right">
+                            <a href="{{ path('admin_administrator_new') }}" class="btn btn-primary"><i class="fa fa-plus"></i> 新規追加</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 margin-bottom">
+                        <form>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label" for="q">テキスト検索</label>
+                                        <input id="q" name="q" placeholder="名前、ユーザー名などから検索" class="form-control" value="{{ context.q }}" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label class="control-label" for="enabled">状態</label>
+                                        <select class="form-control" id="enabled" name="enabled">
+                                            <option value="">全て</option>
+                                            <option value="1" {% if context.enabled == 1 %}selected{% endif %}>有効</option>
+                                            <option value="0" {% if context.enabled is same as("0") %}selected{% endif %}>無効</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <button class="btn btn-info center-block"><i class="fa fa-search"></i> 検索</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
@@ -19,6 +51,8 @@
                             <thead>
                                 <tr role="row">
                                     <th style="">名前</th>
+                                    <th style="width: 40%;">メールアドレス</th>
+                                    <th style="width: 10%;">状態</th>
                                     <th style="width: 20%;"></th>
                                 </tr>
                             </thead>
@@ -26,6 +60,8 @@
                             {% for entry in pagination %}
                             <tr role="row" class="{% if loop.index % 2 %}odd{% else %}even{% endif %}">
                                 <td><a href="{{ path('admin_administrator_edit', {id:entry.id}) }}">{{ entry.name }}</a></td>
+                                <td><a href="mailto:{{ entry.email }}">{{ entry.email }}</a></td>
+                                <td>{% if entry.enabled %}有効{% else %}無効{% endif %}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <a href="{{ path('admin_administrator_edit', {id:entry.id}) }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i> 編集</a>
@@ -37,7 +73,13 @@
                             </tbody>
                         </table>
                         {% else %}
-                            データが登録されていません
+                            <div class="row no-data-message">
+                                <div class="col-sm-12">
+                                    <p class="message-container">
+                                        <i class="fa fa-question-circle"></i><br>
+                                        データが登録されていないか、指定の条件に当てはまるデータがありません。</p>
+                                </div>
+                            </div>
                         {% endif %}
                     </div>
                 </div>
