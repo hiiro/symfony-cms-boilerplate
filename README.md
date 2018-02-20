@@ -10,7 +10,7 @@ symfony-cms-boilerplate
 
 ## Install
 ```
-$ git clone @@@
+$ git clone https://github.com/hiiro/symfony-cms-boilerplate.git
 $ cd symfony-cms-boilerplate
 $ composer install
 $ bin/console d:s:u --force
