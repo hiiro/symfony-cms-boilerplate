@@ -1,0 +1,46 @@
+.image-widget {
+
+}
+
+.dz-preview {
+    display: none;
+}
+
+.empty {
+    display: none;
+}
+
+.image-widget .progress{
+    display: none;
+}
+
+.preview{
+    position:relative;
+}
+.preview img{
+    position:absolute;
+    top:50%;
+    left: 50%;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    -ms-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
+    max-height: 100%;
+}
+.image-fallback {
+    display: table;
+    background-color: #fff;
+    border: 1px solid #c6c6c6;
+}
+
+.fallback-content {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+
+    color: #666666;
+}
+
+.buttons-container {
+    margin-top: 1em;
+    text-align: center;
+}

@@ -37,6 +37,12 @@ class Administrator  extends BaseUser implements AdvancedUserInterface
 
     /**
      * @var string
+     * @ORM\Column(name="image", type="string", length=128, nullable=true)
+     */
+    protected $image;
+
+    /**
+     * @var string
      * @ORM\Column(name="search_index", type="text", nullable=true)
      */
     private $searchIndex = null;
@@ -78,5 +84,53 @@ class Administrator  extends BaseUser implements AdvancedUserInterface
             $this->getUsernameCanonical() . ' ' .
             $this->getEmailCanonical() . ' '
         ;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return Administrator
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set searchIndex
+     *
+     * @param string $searchIndex
+     *
+     * @return Administrator
+     */
+    public function setSearchIndex($searchIndex)
+    {
+        $this->searchIndex = $searchIndex;
+
+        return $this;
+    }
+
+    /**
+     * Get searchIndex
+     *
+     * @return string
+     */
+    public function getSearchIndex()
+    {
+        return $this->searchIndex;
     }
 }

@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new Ambta\DoctrineEncryptBundle\AmbtaDoctrineEncryptBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Avanzu\AdminThemeBundle\AvanzuAdminThemeBundle(),
+            new Liip\ImagineBundle\LiipImagineBundle(),
 
             new WebBundle\WebBundle(),
             new AdminBundle\AdminBundle(),

@@ -10,3 +10,6 @@ web:
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"

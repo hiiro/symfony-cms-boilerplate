@@ -1,0 +1,43 @@
+{% block image_row %}
+    {% spaceless %}
+        <div class="item form-group{% if form.vars.errors|length > 0 %} has-error bad{% endif %}">
+            {% set form_class = 'control-label' %}
+            {{ form_label(form, label|default(null), {label_attr:{class: form_class}, display_required: true}) }}
+            {{ form_row(form) }}
+            {{ block('form_help') }}
+            {{ form_errors(form) }}
+        </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block image_widget %}
+    <div class="image-widget collection-widget-item" id="{{ form.vars.id }}">
+        <div class="image-uploadable">
+            <div class="preview {% if not form.vars.value %} empty{% endif %}" style="width: {{ form.vars.preview_width }}px; height: {{ form.vars.preview_height }}px;">
+                {% if form.vars.value %}
+                    <img class="img-responsive" src="{{ form.vars.value }}" alt="">
+                {% endif %}
+            </div>
+            <div class="image-fallback" id="{{ form.vars.id }}-fallback" style="{% if form.vars.value %}display: none;{% endif %} width: {{ form.vars.preview_width }}px; height: {{ form.vars.preview_height }}px;">
+                <div class="fallback-content">
+                    <span class="icon-image"></span>
+                    {{ placeholder|default('画像を登録してください') | nl2br }}
+                </div>
+            </div>
+            <div class="progress" style="width: {{ form.vars.preview_width }}px;">
+                <div class="progress-bar upload-progress" role="progressbar" style="width: 0;"></div>
+            </div>
+
+            <div class="buttons-container" style="{% if not form.vars.value %}display: none{% endif %}; width: {{ form.vars.preview_width }}px;">
+                <div class="buttons">
+                    <a href="#" class="image-remove btn btn-sm btn-danger">空にする</a>
+                </div>
+            </div>
+
+            <div class="fallback">
+                <input name="file" type="file" multiple="multiple">
+            </div>
+            {{ form_widget(form) }}
+        </div>
+    </div>
+{% endblock %}

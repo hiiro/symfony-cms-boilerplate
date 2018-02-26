@@ -2,6 +2,7 @@
 
 namespace AdminBundle\Form\Type;
 
+use CoreBundle\Form\Type\Widget\ImageType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -12,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class AdministratorType extends AbstractType
 {
@@ -45,6 +47,10 @@ class AdministratorType extends AbstractType
                 'attr' => [
                     'placeholder' => 'mail@example.com'
                 ],
+            ])
+            ->add('image', ImageType::class, [
+                'required' => false,
+                'label' => '画像',
             ])
             ->add('enabled', ChoiceType::class, [
                 'label' => '有効/無効',

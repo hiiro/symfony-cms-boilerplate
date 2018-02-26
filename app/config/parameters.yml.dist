@@ -23,3 +23,5 @@ parameters:
     # AvanzuAdminThemeBundle
     bower_bin: /bin/bower
     admin_skin: skin-blue
+
+    max_image_size: 2000

@@ -4,6 +4,7 @@
 {% block avanzu_head %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('bundles/admin/js/plugins/toastr/build/toastr.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/admin/js/plugins/dropzone/dist/dropzone.css') }}" />
     <link rel="stylesheet" href="{{ asset('bundles/admin/css/common.css') }}" />
 {% endblock %}
 
@@ -44,6 +45,8 @@
 {% block avanzu_javascripts %}
     {{ parent() }}
     <script src="{{ asset('bundles/admin/js/plugins/toastr/build/toastr.min.js') }}"></script>
+    <script src="{{ asset('bundles/admin/js/plugins/dropzone/dist/dropzone.js') }}"></script>
+    <script src="{{ asset('bundles/admin/js/form/image.js') }}"></script>
     <script src="{{ asset('bundles/admin/js/common.js') }}"></script>
 
 {% endblock %}
